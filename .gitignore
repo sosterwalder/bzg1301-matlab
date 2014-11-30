@@ -1,3 +1,9 @@
+# Swap files
+*.swp
+
+# Project files
+*.latexmain
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

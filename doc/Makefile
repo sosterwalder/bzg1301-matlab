@@ -1,0 +1,47 @@
+all: clean build clean-temp
+
+build:
+	pdflatex template.tex
+	bibtex template.aux
+	pdflatex template.tex
+	makeglossaries template.glo
+	pdflatex template.tex
+
+clean:
+	@rm -f *.aux
+	@rm -f *.idx
+	@rm -f *.glo
+	@rm -f *.ist
+	@rm -f *.lof
+	@rm -f *.log
+	@rm -f *.lot
+	@rm -f *.out
+	@rm -f *.pdf
+	@rm -f *.toc
+	@rm -f *.bbl
+	@rm -f *.blg
+	@rm -f *.glg
+	@rm -f *.gls
+	@rm -f *.tcp
+	@rm -f chapters/*.aux
+	@rm -f lead/*.aux
+	@rm -f db/*.aux
+
+clean-temp:
+	@rm -f *.aux
+	@rm -f *.idx
+	@rm -f *.glo
+	@rm -f *.ist
+	@rm -f *.lof
+	@rm -f *.log
+	@rm -f *.lot
+	@rm -f *.out
+	@rm -f *.toc
+	@rm -f *.bbl
+	@rm -f *.blg
+	@rm -f *.glg
+	@rm -f *.gls
+	@rm -f *.tcp
+	@rm -f chapters/*.aux
+	@rm -f lead/*.aux
+	@rm -f db/*.aux
