@@ -1,0 +1,35 @@
+\chapter{Grundlagen}
+\label{chap:basics}
+
+% Was muss man als technischen Hintergrund wissen?
+
+Bei aktiven Konturen handelt es sich um eine Art der Segmentierung, also um ein Verfahren der Bildanalyse. Dabei wird ein Bild in interessante und uninteressante Regionen unterteilt, man weist dabei jedes Pixel eines Bildes einer bestimmten Region zu. 
+
+Die aktiven Konturen sind ein Verfahren der modellbasierten Segmentierung, was bedeutet, dass bereits ein gewisses Vorwissen der Grenzen der Segmente vorhanden ist bzw.\ eine Vorstellung davon.
+
+(vgl. \citeauthor*[S. 133 und 144]{hudritsch:script:cp}) % chktex 10 chktex 17 chktex 9
+
+Eine aktive Kontur wird mithilfe von parametrisierten, geschlossenen Kurven beschrieben.
+
+\begin{figure}[H]
+    \begin{align}
+        r(s) & = (x(s), y(s)), s \in [0,1]
+        \caption{Position einer aktiven Kontur als parametrische Darstellung~\cite{kass88snakes:active}}
+    \end{align}
+\end{figure}
+
+Häufig kommen zur Beschreibung aktiver Konturen B-Spline-Kurven zum Einsatz. Diese haben den Vorteil, dass sie aus mehreren (Kurven-) Segmenten bestehen, welche weiderum aus einigen wenigen Kontrollpunkten bestehen. Die Kontrollpunkte sind zugelich die Koeffizienten der B-Spline-Basisfunktion, dabei ist der Grad der Kurve unabhängig von der Anzahl der Kontrollpunkte. (vgl.~\citeauthor*[S. 79]{fuhrer:script:splines}) % chktex 10 chktex 17 chktex 9
+
+Die Basis einer aktiven Kontur bildet also eine B-Spline-Kurve, deren Kontinuität von Kräften eines Bildes und externen Kräften bestimmt wird. Die internen Kräfte der Kurve ermöglichen eine schrittweise Glättung der Kontur, wohingegen die Kräfte eines Bildes die Kontur zu gewissen Merkmalen, wie z.B. Linen oder Kanten, hinziehen. Die externen Kräfte dienen dazu die Kontur einem gewünschten lokalen Minimum anzunähern. (vgl.~\citeauthor*[S. 323]{kass88snakes:active}) % chktex 10 chktex 17 chktex 9
+
+Aus den genannten Kräften lässt sich, bei parametrischer Darstellung der Position einer aktiven Kontur, folgende Energiefunktion ableiten:
+
+\begin{figure}[H]
+    \begin{align}
+        E_{snake}^* & = \int_0^1 E_{snake}(v(s))\, \mathrm{d}s\\
+         & = \int_0^1 E_{int}(v(s)) + E_{image}(v(s)) + E_{con}(v(s))\, \mathrm{d}s
+    \end{align}
+    \caption{Energiefunktion einer aktiven Kontur~\cite{kass88snakes:active}}
+\end{figure}
+
+Details zu den einzelnen Teilen der Energiefunktion würden den Umfang dieser Arbeit sprengen, daher wird auf eine Beschreibung dieser verzichtet. Details finden sich unter~\citet[S. 247]{hudritsch:script:cp} und unter~\citet[S. 323 bis 328]{kass88snakes:active}.  % chktex 10 chktex 17 chktex 9

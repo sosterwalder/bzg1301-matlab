@@ -23,7 +23,7 @@
 \usepackage[utf8]{inputenc}                                             % UTF-8 character encoding
 \usepackage[T1]{fontenc}                                                % hyphenation of words with ä,ö and ü
 \usepackage{textcomp}                                                   % additional symbols
-\usepackage{ae}                                                         % better resolution of Type1-Fonts 
+% \usepackage{ae}                                                         % better resolution of Type1-Fonts 
 % \usepackage{fancyhdr}                                                   % simple manipulation of header and footer 
 \usepackage{etoolbox}                                                   % color manipulation of header and footer
 \usepackage{graphicx}                                                   % integration of images
@@ -31,9 +31,10 @@
 \usepackage{caption}                                                    % for captions of figures and tables
 \usepackage{booktabs}                                                   % package for nicer tables
 \usepackage{tocvsec2}                                                   % provides means of controlling the sectional numbering
-\usepackage[square,sort,comma,numbers]{natbib}                          % provides various citation styles
+\usepackage[round,sort,comma,authoryear]{natbib}                          % provides various citation styles
 \usepackage{wrapfig}                                                    % provides floating of text around images
 \usepackage{nameref}                                                    % provides printing names of references
+\usepackage{paralist}
 %---------------------------------------------------------------------------
 
 % Definition of Colors
@@ -246,16 +247,24 @@
 \cleardoubleemptypage{}
 %---------------------------------------------------------------------------
 
+% Summary
+%---------------------------------------------------------------------------
+\include{chapters/mgmtsummary}
+
 % Table of contents
 %---------------------------------------------------------------------------
 \tableofcontents
 \cleardoublepage{}
 %---------------------------------------------------------------------------
 
-% Main part:
+% Main part
 %---------------------------------------------------------------------------
 \pagenumbering{arabic}
-\include{chapters/introduction}
+\include{chapters/001introduction}
+\include{chapters/002basics}
+\include{chapters/003concept}
+\include{chapters/004realisation}
+\include{chapters/005results}
 %---------------------------------------------------------------------------
 
 % Glossary
@@ -269,11 +278,10 @@
 
 % Bibliography
 %---------------------------------------------------------------------------
-
 \phantomsection{}
 \addcontentsline{toc}{chapter}{Literaturverzeichnis}
 \bibliographystyle{unsrtnat}
-%\bibliography{db/bibliography}{}
+\bibliography{db/bibliography}{}
 %---------------------------------------------------------------------------
 
 % Listings
@@ -305,4 +313,4 @@
 %---------------------------------------------------------------------------
 
 %---------------------------------------------------------------------------
-\end{document}
+\end{document} % chktex 17
