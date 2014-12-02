@@ -3,6 +3,63 @@
 
 % Wie wurde vorgegangen? Gab es Alternativen?
 
-Um die Erkennung von aktiven Konturen eines Bildes mittels Matlab umzusetzen, wurde eine Applikation in Matlab erstellt, welche es erlaubt ein Bild auf 
+Nachfolgend wird das Vorgehen mittels Zeitplan sowie Meilensteinen beschrieben. Dabei entspricht jeder Meilenstein einem Eintrag im Zeitplan.
 
-Wie~\citet[S. 147]{hudritsch:script:cp} schreibt, ist das Lösen der unter~\ref{chap:basics} beschriebenen Energiefunktion mittels Differnzialgleichung relativ umständlich. Es wird eine einfachere, diskrete Lösung mittels dem Algorithmus von Williams und Shah empfohlen.
+\section{Zeitplan}
+\label{sec:timetable}
+
+\begin{figure}[H]
+    \begin{ganttchart}[
+        vgrid,
+        x unit=1cm,
+        bar/.append style={fill=bfhgrey!50},
+    ]{1}{10}
+        \gantttitle{2014}{8}
+        \gantttitle{2015}{2} \\
+        \gantttitlelist{7,...,16}{1} \\ % chktex 11
+        \ganttbar{Überlegung Thematik}{1}{1} \\
+        \ganttbar{Präsentation Thematik}{2}{2} \\
+        \ganttbar{Konzept}{3}{5}
+        \ganttbar{}{7}{7}
+        \ganttbar{}{9}{9} \\
+        \ganttbar{Umsetzung GUI}{4}{5}
+        \ganttbar{}{8}{8} \\
+        \ganttbar{Implementation}{6}{8} \\
+        \ganttbar{Präsentation Ergebnisse}{10}{10}
+
+        \ganttlink{elem0}{elem1}
+        \ganttlink{elem1}{elem2}
+        \ganttlink{elem2}{elem3}
+        \ganttlink{elem3}{elem4}
+        \ganttlink{elem4}{elem8}
+    \end{ganttchart}
+    \caption{Zeitplan; Der Titel stellt Jahreszahlen, der Untertitel Semesterwochen dar}
+\end{figure}
+
+\section{Meilensteine}
+\label{sec:milestones}
+
+\subsection{Überlegung Thematik}
+\label{subsec:topicsearch}
+\paragraph{KW 7}
+Vor dem eigentlichen Beginn des Projektes wurde mit der Überlegung der Thematik begonnen. Der Entscheid fiel relativ schnell auf die Thematik der aktiven Konturen, da der Autor diese im Schwerpunkt seines Studiums kennengelernt hatte und diese vertiefen wollte. Aktiven Konturen fällt in die Thematik der Bildverarbeitung, wofür Matlab grundsätzlich bestens geeignet ist.
+
+\subsection{Präsentation Thematik}
+\label{subsec:topicpres}
+\paragraph{KW 8}
+Die Thematiken der Teilnehmenden wurde während des Unterrichtes im Fach \textit{BZG1301: Programmierung in Matlab/Octave} vorgestellt, die gewählte Thematik des Autors wurde so vom Donzenten, Herrn Marx Stampfli, angenommen.
+
+\subsection{Konzept}
+\label{subsec:concept}
+\paragraph{KW 9 bis 11, 13 und 15}
+Während der Anfangsphase der Dissertation wurde das hier vorliegende Konzept erarbeitet. Dieses wurde dann nach und nach, mit der eigentlichen Umsetzung, erweitert.
+
+\subsection{Umsetzung GUI}
+\label{subsec:gui}
+\paragraph{KW 10 bis 11, 14}
+In einer ersten Phase wurde ein Prototyp der grafischen Benutzeroberfläche zur Anwendung von aktiven Konturen umgesetzt. Dieser war zuerst rudimentär, sprich, ohne Funktion, wurde dann aber schrittweise erweitert.
+
+\subsection{Implementation}
+\label{subsec:impl}
+\paragraph{KW 12 bis 14}
+Bei der eigentlichen Implementation der Lösung wurde der Algorithmus zur Erkennung von aktiven Konturen in Matlab umgesetzt. Zuerst fand eine statische Umsetzung anhand fixer Parameter und eines fixen Bildes statt, schrittweise wurde dann die Implementation mit der grafischen Benutzeroberfläche verknüpft, so dass sich die Parameter mit dieser einstellen und sich das Bild wählen lässt.

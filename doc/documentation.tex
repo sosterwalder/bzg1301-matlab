@@ -16,6 +16,8 @@
 
 % Load Standard Packages:
 %---------------------------------------------------------------------------
+\usepackage{scrpage2}
+\usepackage{pgfgantt}
 \usepackage[standard-baselineskips]{cmbright}
 
 \usepackage{scrhack}
@@ -170,28 +172,30 @@
 
 % Set up header and footer
 %---------------------------------------------------------------------------
-% \makeatletter
-% \patchcmd{\fancyhead}{\rlap}{\color{bfhgrey}\rlap}{}{}     % new color of header
-% \patchcmd{\fancyfoot}{\rlap}{\color{bfhgrey}\rlap}{}{}     % new color of footer
-% \makeatother
-% 
-% \fancyhf{}                                                                      % clean all fields
-% \fancypagestyle{plain}{% new definition of plain style 
-%     \fancyfoot[OR,EL]{\footnotesize \thepage}   % footer right part --> page number
-%     \fancyfoot[OL,ER]{\footnotesize \titel, Version \versionnumber, \versiondate}   % footer even page left part 
-% }
 
-% \renewcommand{\chaptermark}[1]{\markboth{\thechapter.  #1}{}}
-% \renewcommand{\headrulewidth}{0pt}              % no header stripline
-% \renewcommand{\footrulewidth}{0pt}              % no bottom stripline
+\deftripstyle{newlayout}
+  [0pt] % no header line
+  [0pt] % no footer line
+  {}
+  {}
+  {}
+  {\color{bfhgrey} \footnotesize \doctitle, Version \versionnumber, \versiondate}
+  {}
+  {\color{bfhgrey} \thepage}
+
+\pagestyle{newlayout}
+% use "pagestyle" also on chapter starting pages 
+\renewcommand{\chapterpagestyle}{newlayout}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.  #1}{}}
+\renewcommand*{\headfont}{\normalfont}
+\renewcommand*{\footfont}{\normalfont}
+%---------------------------------------------------------------------------
 
 % Randnotizen
 \newcommand\mpar[1]{\marginpar{\flushleft\sffamily\small #1}}
 \setlength{\marginparwidth}{1.5cm}
 
-\pagestyle{plain}
-%---------------------------------------------------------------------------
-
+\color{black}
 \begin{document}
 
 \lstset{language=XML,
@@ -253,8 +257,8 @@
 
 % Table of contents
 %---------------------------------------------------------------------------
-\tableofcontents
-\cleardoublepage{}
+% \tableofcontents
+% \cleardoublepage{}
 %---------------------------------------------------------------------------
 
 % Main part
@@ -287,9 +291,9 @@
 % Listings
 %---------------------------------------------------------------------------
 
-\phantomsection{}
-\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
-\listoffigures
+% \phantomsection{}
+% \addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+% \listoffigures
 
 %\phantomsection{}
 %\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
