@@ -33,7 +33,7 @@
 \usepackage{caption}                                                    % for captions of figures and tables
 \usepackage{booktabs}                                                   % package for nicer tables
 \usepackage{tocvsec2}                                                   % provides means of controlling the sectional numbering
-\usepackage[round,sort,comma,authoryear]{natbib}                          % provides various citation styles
+\usepackage[square,sort,comma,authoryear]{natbib}                          % provides various citation styles
 \usepackage{wrapfig}                                                    % provides floating of text around images
 \usepackage{nameref}                                                    % provides printing names of references
 \usepackage{paralist}
@@ -57,21 +57,9 @@
 % Load listings package
 % which provides source code formatting
 %---------------------------------------------------------------------------
+\usepackage{xcolor}
 \usepackage{listings}                                                   % provides source code formatting
-% Define XML colors
-\lstdefinelanguage{XML}
-{basicstyle=\ttfamily\footnotesize,
-  morestring=[b]'',
-  moredelim=[s][\bfseries\color{maroon}]{<}{\ },
-  moredelim=[s][\bfseries\color{maroon}]{</}{>},
-  moredelim=[l][\bfseries\color{maroon}]{/>},
-  moredelim=[l][\bfseries\color{maroon}]{>},
-  morecomment=[s]{<?}{?>},
-  morecomment=[s]{<!--}{-->},
-  commentstyle=\color{codecommentcolor},
-  stringstyle=\color{darkblue},
-  identifierstyle=\color{red}
-}
+\usepackage{matlab-prettifier}
 %---------------------------------------------------------------------------
 
 % Comment package
@@ -198,7 +186,7 @@
 \color{black}
 \begin{document}
 
-\lstset{language=XML,
+\lstset{
   caption={},
   frame=L,
   basicstyle=\small\normalfont\sffamily,  % the size of the fonts that are used for the code
@@ -268,7 +256,9 @@
 \include{chapters/002basics}
 \include{chapters/003concept}
 \include{chapters/004realisation}
-\include{chapters/005results}
+\include{chapters/005proceeding}
+\include{chapters/006results}
+\include{chapters/007conclusion}
 %---------------------------------------------------------------------------
 
 % Glossary
@@ -313,7 +303,7 @@
 %---------------------------------------------------------------------------
 \appendix
 \settocdepth{section}
-%\include{anhang/beispielanhang}
+\include{appendix/appendix}
 %---------------------------------------------------------------------------
 
 %---------------------------------------------------------------------------

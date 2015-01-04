@@ -1,0 +1,10 @@
+\chapter{Fazit}
+\label{chap:conclusion}
+
+Die definierten Ziele konnten erreicht werden: Regionen werden generell in Bildern mittels aktiver Konturen als zusammenhängend erkannt.
+
+Während mit der MATLAB-internen Method mehrere Regionen eines Bildes extrahiert werden können (siehe~\footnote{\url{http://www.mathworks.com/help/images/ref/activecontour.html\#btuvwkc}}), ist dies mit der selbst implementierten Variante zum jetzigen Zeitpunkt nicht möglich.
+
+Ein interessanter Aspekt bei der Erkennung ist die Geschwindigkeit. Die MATLAB-interne Methode benötigt im Schnitt etwa 4.3 Sekunden zur Erkennung bei 300 Durchläufen. Die selbst Implementierte Variante benötigt hingegen im Schnitt etwa 3.5 Sekunden zur Erkennung bei 1000 Durchläufen.
+
+\citeauthor*{Chan:2001:ACW:2318993.2320071} liefern mit ihrer Arbeit zur Erkennung von aktiven Konturen ohne erforderliche Kantenerkennung einen viel versprechenden Ansatz, siehe~\cite{Chan:2001:ACW:2318993.2320071}. MATLAB unterstützt diese Methode bereits. Bei einer einfachen Prüfung fiel dem Autor auf, dass die Erkennung der Fraktur mit dieser Methode nur unzuverlässig funktioniert (möglicherweise als Folge von unvollständiger Parametereingabe).

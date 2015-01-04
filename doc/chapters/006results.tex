@@ -14,4 +14,25 @@
 %          „Die Gesamtmobilität der Befragten liegt bei 12'600 km (Bezugsjahr 1994). Sie hat im erfragten Zeitraum um 12\% zugenommen (von 11'300 km auf 12'600 km). Der grösste Teil dieses Anstiegs geht auf die Ferienmobilität zurück, die im Schnitt von 6'400 km auf 7'300 km zugenommen hat. Die genannten Mobilitätswerte liegen deutlich unter dem Schweizer Durchschnitt.“
 %  \end{compactenum} % chktex 17
 
-[TODO: Ergebnisse hier ergänzen :)]
+\section{MATLAB-interne Methode \textit{activecontour}}
+\label{sec:results:matlab}
+Mittels der MATLAB-internen Methode wurde die Fraktur als zusammenhängende Region erkannt und könnte somit problemlos extrahiert werden. Die Erkennung dauert im Schnitt rund 4.3 Sekunden. Das Resultat ist in Abbildung~\ref{fig:matlab_result} ersichtlich.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{images/matlab_result.png}
+    \caption{Resultat der Erkennung der gewünschten Region mittels der MATLAB-internen Methode \textit{activecontour}\protect\footnotemark[1]{}}
+\label{fig:matlab_result}
+\end{figure}
+\footnotetext[1]{Eigene Darstellung mittels MATLAB}
+
+\section{Eigene Implementation}
+\label{sec:results:own}
+Auch mit dieser Methode wurde die Fraktur als zusammenhängende Region erkannt und könnte somit problemlos extrahiert werden. Die Erkennung dauert im Schnitt rund 3.5 Sekunden. Das Resultat ist in~\autoref{fig:ownimpl_result} abgebildet.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{images/ownimpl_result.png}
+    \caption{Resultat der Erkennung der gewünschten Region anhand der eigenen Implementation in MATLAB\protect\footnotemark[1]{}}
+\label{fig:ownimpl_result}
+\end{figure}

@@ -1,0 +1,77 @@
+\chapter{Vorgehen}
+\label{chap:proceeding}
+% Dieses Kapitel enthält die gewonnenen Daten und ist deshalb in wissenschaftlicher Hinsicht besonders wichtig. Es dürfen nur Ergebnisse, die für die Fragestellung relevant sind, aufgeführt werden. Dazu können aber auch Negativergebnisse gehören. Die Fragen der Einleitung müssen mit den vorgestellten Ergebnissen zu beantworten sein.
+% 
+% Die Ergebnisse sollten mit Hilfe von Abbildungen und Tabellen möglichst übersichtlich dargestellt werden. Der Text sollte möglichst kurz gehalten werden und nicht die Informationen der Abbildungen und Tabellen wiederholen. Emotionen wie z.B. Erstaunen oder Entsetzen sollten vermieden werden. In den statistischen Auswertungen müssen neben Mittelwerten auch Streuungsmasse und Stichprobengrössen angegeben werden.
+% 
+% Es muss immer klar sein, ob es sich um eigene oder fremde Ergebnisse (z.B. aus Literaturrecherchen) handelt. Bei fremden Ergebnissen muss im Text auf die Herkunft verwiesen werden (siehe 2.8). Wörtliche Zitate sollten vermieden werden.
+
+%  \begin{compactenum}[a)] % chktex 9 chktex 10 chktex 17
+%      \item Auszug aus einer zoologischen Untersuchung zur Diversität von Arthropoden in voralpinen Flachmooren:
+%          „In den untersuchten Gebieten konnten 63 Tagfalterarten aus 6 Familien nachgewiesen werden (Anhang IV). 16 Arten (25\%) gelten als typische Moorindikatoren und 23 Arten (37\%) erscheinen auf der Roten Liste der gefährdeten Tagfalter der Schweiz (Duelli 1994). Die Individuenzahl der Arthropoden nahm mit zunehmender Höhe ab (p < 0.05). Während in der tiefen Höhenstufe durchschnittlich 249 Tiere pro Gebiet gefangen wurden, waren es in der mittleren Höhenstufe 236 und in der höchsten nur noch 191 Individuen.“
+%      \item Auszug aus einer sozialwissenschaftlichen Untersuchung über Engagement und Mobilität:
+%          „Die Gesamtmobilität der Befragten liegt bei 12'600 km (Bezugsjahr 1994). Sie hat im erfragten Zeitraum um 12\% zugenommen (von 11'300 km auf 12'600 km). Der grösste Teil dieses Anstiegs geht auf die Ferienmobilität zurück, die im Schnitt von 6'400 km auf 7'300 km zugenommen hat. Die genannten Mobilitätswerte liegen deutlich unter dem Schweizer Durchschnitt.“
+%  \end{compactenum} % chktex 17
+
+Ziel dieser Projektarbeit war es, ein eigenes Programm zur Erkennung von Regionen mittels aktiver Konturen zu entwickeln und ursprünglich mit anderen, in MATLAB verfügbaren Methoden zu vergleichen.
+
+\section{Ausgangslage}
+\label{sec:proceeding:basics}
+Als Grundlage für die methodischen Vergleiche wurde eine angepasste Version des Bildes~\footnote{\url{http://upload.wikimedia.org/wikipedia/commons/3/3d/Patella_bipartita.jpg}} verwendet, wie in Abbildung~\ref{fig:source_img} ersichtlich.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{images/patella_bipartita.jpg}
+    \caption{Quellbild der Versuche\protect\footnotemark{}}
+\label{fig:source_img}
+\end{figure}
+\footnotetext{Angepasste Version von \url{http://upload.wikimedia.org/wikipedia/commons/3/3d/Patella_bipartita.jpg}}
+
+Die zu vergleichenden Methoden sollen die Fraktur der Kniescheibe, wie in~\autoref{fig:target_img} ersichtlich, als zusammenhängende Region erkennen.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{images/patella_bipartita_target.jpg}
+    \caption{Quellbild der Versuche mit eingezeichneter Zielregion\protect\footnotemark{}}
+\label{fig:target_img}
+\end{figure}
+\footnotetext{Angepasste Version von \url{http://upload.wikimedia.org/wikipedia/commons/3/3d/Patella_bipartita.jpg}}
+
+\newpage
+
+\section{Angewendete Methoden}
+\label{sec:proceeding:methods}
+\begin{itemize}
+    \item Entwicklung einer Applikation zur Erkennung von Regionen mittels aktiven Konturen
+    \item MATLAB-interne Methode \textit{activecontour} als Vergleich
+\end{itemize}
+
+Zur Erkennung der Region mittels den in MATLAB vorhandenen Methoden wurde die \textit{activecontour}-Methode (siehe~\footnote{\url{http://www.mathworks.com/help/images/ref/activecontour.html}}) der ``Image Processing Toolbox'' (siehe~\footnote{\url{http://www.mathworks.com/products/image/}}) verwendet. Als Eingabe-Parameter wurden dazu die unter~\ref{fig:matlab_mask} abgebildete Maske, 300 Iterationen sowie das kantenbasierte Verfahren gewählt.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{images/matlab_mask.png}
+    \caption{Maske zur Erkennung der gewünschten Region\protect\footnotemark[6]{}}
+\label{fig:matlab_mask}
+\end{figure}
+\footnotetext[6]{Eigene Darstellung mittels MATLAB}
+
+Die Untersuchung mittels anderer Methoden erwies sich als zu aufwändig. Bewusst wurde darauf verzichtet.
+
+Bei der eigenen Implementation wurden zur Erkennung der Region die in Abbildung~\ref{fig:ownimpl_contour} ersichtlichen Punkte gewählt. Als Eingabe-Parameter wurden für die Elastizität ($\alpha$) \textit{0.54}, für die Kurvatur ($\beta$) \textit{0.1} und für die Energie des Bildes ($\gamma$) \textit{0.9} genommen. Diese Werte basieren einerseits auf~\cite[Seite 148]{hudritsch:script:cp}, andererseits auf eigenen Versuchen.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{images/ownimpl_contour.png}
+    \caption{Definierte Punkte zur Bildung der aktiven Kontur\protect\footnotemark[6]{}}
+\label{fig:ownimpl_contour}
+\end{figure}
+
+Als Eingabe zur Bildung der aktiven Kontur wurde das Binärbild mit den erkannten Kanten des Bildes, wie unter~\ref{fig:ownimpl_edges} ersichtlich, gewählt. Die Bildung der aktiven Kontur wurde mit 1000 Iterationen durchgeführt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.25]{images/ownimpl_edges.png}
+    \caption{Binärbild mit den erkannten Kanten des Bildes\protect\footnotemark[6]{}}
+\label{fig:ownimpl_edges}
+\end{figure}
