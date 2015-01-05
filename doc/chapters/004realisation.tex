@@ -17,7 +17,7 @@ Für die Umsetzung der Erkennung von aktiven Konturen eines Bildes mittels MATLA
 
 Wie~\citet[S. 147]{hudritsch:script:cp} aussagt, ist die Lösung der im~\autoref{chap:basics} beschriebenen Energiefunktion mittels Differenzialgleichung relativ umständlich und daher (algorithmisch) teuer. Er empfiehlt eine einfachere, diskrete Lösung mittels dem Algorithmus von Williams und Shah. Schliesslich wurde die Umsetzung damit vorgenommen. Details zu dem Algorithmus finden sich unter~\cite[Seite 20]{williams92faa}.
 
-\section{Umseztung}
+\section{Umsetzung}
 \label{sec:realization}
 Die Applikation wurde komplett mittels MATLAB umgesetzt.
 
@@ -54,14 +54,18 @@ Der Algorithmus zur Berechnung der aktiven Kontur wird iterativ innerhalb einer 
 \label{subsec:realization:algo}
 Der Algorithmus beruht auf einer Energiefunktion, wie in Kapitel~\ref{chap:basics} beschrieben. Die Energiefunktion besteht aus den Kräften \textit{Elastizität} und \textit{Kurvatur} sowie der \textit{Energie des Bildes}, mit den jeweiligen Faktoren \textit{$\alpha$}, \textit{$\beta$} und \textit{$\gamma$} skaliert.
 
-\begin{lstlisting}[caption={Bei der Berechnung der Energiefunktion eines Punktes bedeuten: $p_i$ Position des Punktes $i$, $pv_i$ Farbwert des unter dem Punkt $i$ liegenden Pixels und $n$ Gesamtzahl der Punkte.\protect\footnotemark}]
-    $E_{snake} = \displaystyle\sum_{i=1}^{n}(\alpha * E_{elas}(p_i) + \beta * E_{curv}(p_i) + \gamma * E_{img}(pv_i))$
-\end{lstlisting}
+\begin{figure}[H]
+    \renewcommand\figurename{Auflistung}
+    \begin{align}
+        E_{snake} & = \displaystyle\sum_{i=1}^{n}(\alpha * E_{elas}(p_i) + \beta * E_{curv}(p_i) + \gamma * E_{img}(pv_i))
+    \end{align}
+    \caption{Bei der Berechnung der Energiefunktion eines Punktes bedeuten: $p_i$ Position des Punktes $i$, $pv_i$ Farbwert des unter dem Punkt $i$ liegenden Pixels und $n$ Gesamtzahl der Punkte.\protect\footnotemark}
+\end{figure}
 \footnotetext{\cite[Seite 148]{hudritsch:script:cp}}
 
 Der Algorithmus aktualisiert bei jedem Durchlauf die Position der Punkte, er berechnet die gesamten Kräfte (gemäss~\cite[Seite 147 und 148]{hudritsch:script:cp}) und zeichnet Punkte wie Kräfte ein.\\
 Punkte und Linien der aktiven Kontur werden rot, Vektoren zur Anzeige der Elastizität blau, Vektoren zur Anzeige der Kurvatur braun, Vektoren der Energie des Bildes grün und das Zentrum der aktiven Kontur weiss dargestellt, wie Abbildung~\ref{fig:ownimpl_forces} zeigt.
-
+\setcounter{figure}{0}
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=1.0]{images/ownimpl_forces.png}
@@ -71,29 +75,41 @@ Punkte und Linien der aktiven Kontur werden rot, Vektoren zur Anzeige der Elasti
 \footnotetext{Eigene Darstellung mittels MATLAB}
 
 Zur Berechnung der \underline{Elastizität eines Punktes} wird das Delta seiner Position zu seinem Nachfolger und Vorgänger addiert und skaliert.
-\begin{lstlisting}[caption={Berechnung der Elastizität eines Punktes. Es bedeuten: $p_i$ die Position eines Punktes $i$, $\overline{d}$ die mittlere Seitenlänge zwischen zwei Punkten.\protect\footnotemark}]
-    $E_{elas} = (\overline{d} - |p_i - p_{i-1}| )^2$
-\end{lstlisting}
+\setcounter{figure}{1}
+\begin{figure}[H]
+    \renewcommand\figurename{Auflistung}
+    \begin{align}
+        E_{elas} & = (\overline{d} - |p_i - p_{i-1}| )^2
+    \end{align}
+    \caption{Berechnung der Elastizität eines Punktes. Es bedeuten: $p_i$ die Position eines Punktes $i$, $\overline{d}$ die mittlere Seitenlänge zwischen zwei Punkten.\protect\footnotemark}
+\end{figure}
 \footnotetext{\cite[Seite 147]{hudritsch:script:cp}}
 
+\newpage
+
 Die \underline{Kurvatur eines Punktes} wird berechnet durch Subtraktion seiner Position von der Summe der Positionen seines Vorgängers und seines Nachfolgers. Seine Position wird mit dem Faktor zwei skaliert.
-\begin{lstlisting}[caption={Berechnung der Kurvatur eines Punktes. $p_i$ stellt die Position eines Punktes $i$ dar.\protect\footnotemark}]
-    $E_{curv} = |p_{i-1} + p_{i+1} - 2p_i|^2$
-\end{lstlisting}
-\footnotetext{\cite[Seite 148]{hudritsch:script:cp}}
+\begin{figure}[H]
+    \renewcommand\figurename{Auflistung}
+    \begin{align}
+        E_{curv} & = |p_{i-1} + p_{i+1} - 2p_i|^2
+    \end{align}
+    \caption{Berechnung der Kurvatur eines Punktes. $p_i$ stellt die Position eines Punktes $i$ dar.\protect\footnotemark[4]}
+\end{figure}
+\footnotetext[4]{\cite[Seite 148]{hudritsch:script:cp}}
 
 Die Berechnung der \underline{Energie des Bildes} erfolgt analog derjenigen der Elastizität. Anstelle des Deltas der Position wird das Delta der Farbwerte der unter den Punkten liegenden Pixel genommen.
-\begin{lstlisting}[caption={Berechnung der Bildenergie eines Punktes. Es bedeuten: $pv_i$ Farbwert des unter dem Punkt $i$ liegenden Pixels, $\overline{dv}$ mittlere Farbwerte zweier unter den Punkten liegenden Pixel.\protect\footnotemark}]
-    $E_{img} = (\overline{dv} - |pv_i - pv_{i-1}| )^2$
-\end{lstlisting}
-\footnotetext{\cite[Seite 148]{hudritsch:script:cp}}
-
-\newpage
+\begin{figure}[H]
+    \renewcommand\figurename{Auflistung}
+    \begin{align}
+        E_{img} & = (\overline{dv} - |pv_i - pv_{i-1}| )^2
+    \end{align}
+    \caption{Berechnung der Bildenergie eines Punktes. Es bedeuten: $pv_i$ Farbwert des unter dem Punkt $i$ liegenden Pixels, $\overline{dv}$ mittlere Farbwerte zweier unter den Punkten liegenden Pixel.\protect\footnotemark[4]}
+\end{figure}
 
 \section{Benutzeroberfläche}
 \label{sec:realisation:gui}
 Die Applikation verfügt über eine minimal gehaltene Benutzeroberfläche, welche das Laden eines Bildes, das Setzen von Punkten sowie die Definition von kurvenrelevanten Parametern erlaubt. Für die Bildung der aktiven Kontur kann unter den genannten Bildvarianten ausgewählt werden (siehe Abschnitt~\ref{subsec:realization:arch}).
-
+\setcounter{figure}{1}
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.5]{images/ownimpl_gui.png}
@@ -101,6 +117,8 @@ Die Applikation verfügt über eine minimal gehaltene Benutzeroberfläche, welch
 \label{fig:ownimpl_gui}
 \end{figure}
 \footnotetext{Eigene Darstellung mittels MATLAB}
+
+\newpage
 
 Kurvenrelevante Parameter sind die folgenden:
 \begin{itemize}
@@ -120,8 +138,6 @@ Kurvenrelevante Parameter sind die folgenden:
 
         Bestimmt den Einfluss der Farbwerte auf die Kurve, aufgrund der Pixel unter den Punkten.
 \end{itemize}
-
-\newpage
 
 Die Benutzeroberfläche verfügt über die folgenden Schaltflächen:
 \begin{itemize}

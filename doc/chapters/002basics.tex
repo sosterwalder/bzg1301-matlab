@@ -12,6 +12,7 @@ Die aktiven Konturen sind ein Verfahren der modellbasierten Segmentierung. Die G
 Eine aktive Kontur wird mit Hilfe von \glslink{parametrisierten}{parametrisierten}, geschlossenen Kurven beschrieben.
 
 \begin{figure}[H]
+    \renewcommand\figurename{Auflistung}
     \begin{align}
         r(s) & = (x(s), y(s)), s \in [0,1]
     \end{align}
@@ -26,6 +27,7 @@ Die Basis einer aktiven Kontur bildet eine \glslink{B-Spline-Kurve}{B-Spline-Kur
 Bei parametrischer Darstellung der Position einer aktiven Kontur lässt sich aus den genannten Kräften folgende Energiefunktion ableiten:
 
 \begin{figure}[H]
+    \renewcommand\figurename{Auflistung}
     \begin{align}
         E_{snake}^* & = \int_0^1 E_{snake}(v(s))\, \mathrm{d}s\\
          & = \int_0^1 E_{int}(v(s)) + E_{image}(v(s)) + E_{con}(v(s))\, \mathrm{d}s
